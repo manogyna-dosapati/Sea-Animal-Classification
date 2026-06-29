@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OceanicAI - Sea Animal Classification</title>
+    <meta name="description" content="Classify underwater sea animals using an advanced Deep Learning model.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="glass-container">
+        <header>
+            <h1>Oceanic<span class="highlight">AI</span></h1>
+            <p class="subtitle">EfficientNetV2B0 Deep Learning Classifier</p>
+        </header>
+
+        <section class="upload-section">
+            <div id="drop-area" class="drop-area">
+                <form class="my-form">
+                    <input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.files)">
+                    <label class="button-label" for="fileElem">
+                        <div class="upload-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </div>
+                        <span class="upload-text">Drag & Drop an image or <strong>Browse</strong></span>
+                    </label>
+                </form>
+                <div id="preview-container" class="hidden">
+                    <img id="image-preview" src="" alt="Image preview">
+                    <button id="remove-btn" class="remove-btn" aria-label="Remove image">&times;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="results-section" class="results-section hidden">
+            <div class="loader" id="loader">
+                <div class="spinner"></div>
+                <p>Analyzing image...</p>
+            </div>
+            
+            <div class="result-card hidden" id="result-card">
+                <h2>Prediction Result</h2>
+                <div class="result-details">
+                    <div class="detail-item">
+                        <span class="label">Species</span>
+                        <span class="value" id="predicted-class">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Confidence</span>
+                        <span class="value" id="confidence-score">-</span>
+                    </div>
+                </div>
+                <button id="reset-btn" class="primary-btn">Classify Another Image</button>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Classifies 9 Marine Species including Sharks, Corals, and Penguins</p>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
